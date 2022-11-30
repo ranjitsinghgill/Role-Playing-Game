@@ -1,36 +1,42 @@
 /*
 CHALLENGE
-1. Strip out the hero and monster data (element id, name, avatar, 
-health and dice score) and store them in variables
-
-2. Write a renderCharacter() function that accepts the 5 new variables 
-as paramaters and renders out a character with this data
-
-3. Call renderCharacter() twice. Once with the hero variables and 
-once with the monster variables to that both are rendered
+1. Convert our consts into two objects called 
+"monster" and "hero".
+2. Update the renderCharacter() function so that it accepts 
+a single object "data" as its parameter instead of five string/numbers, 
+reducing the number of arguments to pass in from five to one.
+3. Update the template now each variable is coming from "data".
+4. Update the function call.
 */
 
-let elementIdHero = 'hero'
-let nameHero = 'Wizard'
-let avatarHero = 'images/wizard.png'
-let healthHero = 60
-let diceScoreHero = 6
-
-let elementIdMonster = 'monster'
-let nameMonster = 'Orc'
-let avatarMonster = "images/orc.png"
-let healthMonster = 10
-let diceScoreMonster = 4
-
-function renderCharacter(elementId, name, avatar, health, diceScore) {
-    document.getElementById(elementId).innerHTML = 
-    `<div class="character-card">
-        <h4 class="name"> ${name} </h4>
-        <img class="avatar" src="${avatar}"/>
-        <p class="health">health: <b> ${health} </b></p>
-        <div class="dice-container"><div class="dice"> ${diceScore} </div></div>
-    </div>`; 
+const hero = {
+   elementId: "hero",
+   name: "Wizard",
+   avatar: "images/wizard.png",
+   health: 60,
+   diceRoll: 6,
 }
 
-renderCharacter(elementIdHero, nameHero, avatarHero, healthHero, diceScoreHero)
-renderCharacter(elementIdMonster, nameMonster, avatarMonster, healthMonster, diceScoreMonster)
+const monster = {
+   elementId: "monster",
+   name: "Orc",
+   avatar: "images/orc.png",
+   health: 10,
+   diceRoll: 4,
+}
+
+
+function renderCharacter(data) {
+   document.getElementById(data.elementId).innerHTML =
+       `<div class="character-card">
+           <h4 class="name"> ${data.name} </h4>
+           <img class="avatar" src="${data.avatar}" />
+           <div class="health">health: <b> ${data.health} </b></div>
+           <div class="dice-container">
+               <div class="dice"> ${data.diceRoll} </div>
+           </div>
+       </div>`
+}
+
+renderCharacter(hero);
+renderCharacter(monster);
